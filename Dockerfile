@@ -22,6 +22,4 @@ ENTRYPOINT ["/sbin/tini", "--"]
 
 COPY --from=builder /app/epgs-annict-reserver/dist ./dist
 
-EXPOSE 3000
-
 CMD ["yarn", "node", "/app/epgs-annict-reserver/dist"]
