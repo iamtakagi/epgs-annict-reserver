@@ -8,7 +8,7 @@
 
 ### Installation
 ```
-docker run --rm  --env-file=.env ghcr.io/iamtakagi/epgs-annict-reserver:master
+docker run --rm --env-file=.env ghcr.io/iamtakagi/epgs-annict-reserver:master
 ```
 
 ## LICENSE
