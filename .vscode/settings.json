@@ -1,0 +1,13 @@
+{
+    "search.exclude": {
+        "**/.yarn": true,
+        "**/.pnp.*": true
+    },
+    "eslint.nodePath": ".yarn/sdk",
+    "prettier.prettierPath": ".yarn/sdk/prettier/index.js",
+    "typescript.tsdk": ".yarn/sdk/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
+}
