@@ -8,10 +8,7 @@
 
 ### Installation
 ```
-git clone git@github.com:iamtakagi/epgs-annict-reserver.git
-cp .env.sample .env
-cd docker
-docker-compose up -d
+docker run --rm ghcr.io/iamtakagi/epgs-annict-reserver:latest
 ```
 
 ## LICENSE
