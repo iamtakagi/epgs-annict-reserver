@@ -8,8 +8,8 @@ import { addRule } from "./epgstation.js"
 
 ;(async () => {
   // fetch: Annict User を取得
+  console.log("fetching user...")
   const user = (await fetchAnnictWatchesRaw([process.env.ANNICT_USER!]))[0]
-
   // join: WANNA_WATCH と WATCHING を抽出 + 連結
   const obj = z.object({
     annictId: z.number(),
@@ -36,6 +36,7 @@ import { addRule } from "./epgstation.js"
   // reserve: EPGStation に予約ルールを追加
   for (const { title } of filteredAnnictWorks) {
     if (!title) continue
+    // {"isTimeSpecification":false,"searchOption":{"keyword":"てすと","keyCS":false,"keyRegExp":false,"name":true,"description":true,"extended":false,"times":[{"week":127}]},"reserveOption":{"enable":true,"allowEndLack":true,"avoidDuplicate":false},"saveOption":{}}
     const res = await addRule({
       isTimeSpecification: true,
       searchOption: {
@@ -61,6 +62,9 @@ import { addRule } from "./epgstation.js"
         directory: title, // 保存ディレクトリ
         recordedFormat: "TS", // ファイル名フォーマット
       },
+      encodeOption: {
+        isDeleteOriginalAfterEncode: false
+      }
     })
     console.log(res)
   }

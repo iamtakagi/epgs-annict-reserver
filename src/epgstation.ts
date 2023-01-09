@@ -1,18 +1,14 @@
 import * as apid from './epgstation.d.js'
-import fetch from 'node-fetch'
+import got from 'got'
 
 export const addRule = async (rule: apid.AddRuleOption) => {
-    const base = process.env.EPGSTATION_URL!
-    const path = '/api/rules';
-    const url = new URL(path, base);
-    const response = await fetch(url.toString(), {
-        method: "POST",
+    const epgsRes = await got.post<{ data: unknown }>(`${process.env.EPGSTATION_URL!}/api/rules`, {
         body: JSON.stringify(rule),
         headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0',
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': `application/json`
-        }
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            "Content-Type": "application/json",
+        },
+        responseType: "json",
     })
-    return response
+    return epgsRes
 }
